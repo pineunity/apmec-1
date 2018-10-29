@@ -14,10 +14,6 @@ if is_service_enabled apmec; then
         # Perform installation of service source
         echo_summary "Installing Apmec"
         install_apmec
-        echo_summary "Installing tosca parser"
-        mec_tosca_parser_install
-        echo_summary "Installing heat translator"
-        mec_heat_translator_install
 
     elif [[ "$1" == "stack" && "$2" == "post-config" ]]; then
         # Configure after the other layer 1 and 2 services have been configured
@@ -33,8 +29,6 @@ if is_service_enabled apmec; then
         init_apmec
         echo_summary "Starting Apmec API and conductor"
         start_apmec
-        echo_summary "Installing apmec client"
-        apmec_client_install
         if [[ "${APMEC_MODE}" == "all" ]]; then
             echo_summary "Modifying Heat policy.json file"
             modify_heat_flavor_policy_rule
